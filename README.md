@@ -1,2 +1,2 @@
-# serverless-apps
-Applications used in the Red Hat course Autoscaling serverless applications in container platforms
+# Serverless Application Repository
+This repository contains applications used in the Red Hat course Autoscaling serverless **applications in container platforms**
