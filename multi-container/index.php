@@ -1,28 +1,24 @@
 <?php
 // Connecting, selecting database
-$link = mysql_connect($_ENV["MYSQL_HOST"], $_ENV["MYSQL_USER"], $_ENV["MYSQL_PASSWORD"])
-    or die('Could not connect: ' . mysql_error());
+$mysqli = new mysqli($_ENV["MYSQL_HOST"], $_ENV["MYSQL_USER"], $_ENV["MYSQL_PASSWORD"], $_ENV["MYSQL_DATABASE"]);
 
-mysql_select_db($_ENV["MYSQL_DATABASE"]) or die('Could not select database');
+if ($mysqli->connect_errno) {
+  echo "Failed to connect to database";
+  echo "Error: " . $mysqli->connect_error . "\n";
+}
 
 // Performing SQL query
-$query = 'SELECT * FROM ' . $_ENV["MYSQL_TABLE"];
-$result = mysql_query($query) or die('Query failed: ' . mysql_error());
+$sql = 'SELECT * FROM ' . $_ENV["MYSQL_TABLE"];
 
-// Printing results in HTML
-echo "<table>\n";
-while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    echo "\t<tr>\n";
-    foreach ($line as $col_value) {
-        echo "\t\t<td>$col_value</td>\n";
-    }
-    echo "\t</tr>\n";
+if (!$result = $mysqli->query($sql)) {
+    echo "Error executing the query " . $sql . "\n";
+    echo "Error: " .  $mysqli->error . "\n";
 }
-echo "</table>\n";
 
-// Free resultset
-mysql_free_result($result);
+echo "<ul>\n";
+while ($student = $result->fetch_assoc()) {
+    echo "<li>Estudiante : " . $student['name'] . "</li>\n";
+}
+echo "</ul>\n";
 
-// Closing connection
-mysql_close($link);
 ?>
