@@ -12,7 +12,7 @@ def healthz():
     return make_response(jsonify({"health": "ok"}), 200)
 
 
-@application.route('/')
+@application.route('/cpu')
 def cpu():
 
     cpus = cpu_count()
