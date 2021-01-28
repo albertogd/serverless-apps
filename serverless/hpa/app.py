@@ -1,9 +1,14 @@
 #!/usr/bin/python
 from flask import Flask, request, jsonify, make_response
 import requests
-from multiprocessing import Pool
-from multiprocessing import cpu_count
 import time
+import multiprocessing
+#from multiprocessing import Pool
+#from multiprocessing import cpu_count
+from Monitor import MonitorThread
+from Controller import ControllerThread
+from closedLoopActuator import closedLoopActuator
+
 
 application = Flask(__name__)
 
@@ -31,18 +36,25 @@ def f(x):
       x*x
       loop_count = loop_count - 1
 
-@application.route('/cpu')
-def cpu():
+@application.route('/cpu/<int:duration>/<float:cpuLoad>')
+def cpu(duration, cpuLoad):
 
-    cpus = cpu_count()
-    print('Number of cpus available: %d' % cpu_count())
-    print('-' * 20)
-    print('Running load on CPU(s)')
-    print('Utilizing %d cores' % cpus)
-    print('-' * 20)
-    pool = Pool(cpus)
-    pool.map(f, range(cpus))
-    pool.close()
+    cpu_core = 0
+    monitor = MonitorThread(cpu_core, 0.1)
+    monitor.start()
+
+    control = ControllerThread(0.1)
+    control.start()
+    control.setCpuTarget(cpuLoad)
+
+    actuator = closedLoopActuator(control, monitor, duration, cpu_core, cpuLoad/100, 0)
+    actuator.run()
+    actuator.close()
+
+    monitor.running = 0;
+    control.running = 0;
+    monitor.join()
+    control.join()
 
     return make_response("", 200)
 
