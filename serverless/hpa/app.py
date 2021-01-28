@@ -5,6 +5,10 @@ import time
 import multiprocessing
 #from multiprocessing import Pool
 #from multiprocessing import cpu_count
+
+import sys
+sys.path.insert(0, 'utils')
+
 from Monitor import MonitorThread
 from Controller import ControllerThread
 from closedLoopActuator import closedLoopActuator
