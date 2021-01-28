@@ -36,7 +36,8 @@ def f(x):
 @application.route('/cpu/<int:time>')
 def cpu(time):
 
-    global set_time = time
+    global set_time
+    set_time = time
     processes = cpu_count()
     pool = Pool(processes)
     pool.map(f, range(processes))
