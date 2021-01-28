@@ -11,6 +11,25 @@ application = Flask(__name__)
 def healthz():
     return make_response(jsonify({"health": "ok"}), 200)
 
+@application.route('/memory')
+def memory():
+    size = 200
+    seconds = 300
+
+    try:
+      dummy = ' ' * 1024 * 1024 * size
+    except MemoryError:
+      return make_response("Ran out of memory", 400)
+    time.sleep(seconds)
+    dummy = ''
+
+    return make_response("", 200)
+
+def f(x):
+    loop_count = 1000 * 1024 * 250
+    while loop_count > 0:
+      x*x
+      loop_count = loop_count - 1
 
 @application.route('/cpu')
 def cpu():
