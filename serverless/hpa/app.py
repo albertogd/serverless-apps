@@ -31,7 +31,7 @@ def f(x):
     start = time.time()
     message = 0
     while True:
-        if (time.time() - start > 30) and (message == 1)
+        if (time.time() - start > 30) and (message == 1):
             yield "Generating CPU Load"
             message = 1
         if time.time() > timeout:
