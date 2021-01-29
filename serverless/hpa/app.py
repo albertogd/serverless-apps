@@ -28,12 +28,7 @@ def memory(size, time):
 
 def f(x):
     timeout = time.time() + 60*float(set_time)  # X minutes from now
-    start = time.time()
-    message = 0
     while True:
-        if (time.time() - start > 30) and (message == 1):
-            yield "Generating CPU Load"
-            message = 1
         if time.time() > timeout:
             break
         x*x
