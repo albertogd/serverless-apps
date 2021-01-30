@@ -14,7 +14,6 @@ def healthz():
 
 @application.route('/memory/<int:size>/<int:time>')
 def memory(size, time):
-    size = size
     seconds = time*60
 
     try:
