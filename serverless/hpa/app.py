@@ -42,7 +42,7 @@ def cpu(time):
     pool = Pool(processes)
     pool.map(f, range(processes))
     pool.close()
-    return make_response("CPU Load Finished", 200)
+    return make_response(jsonify({"CPU Lod Finished": "ok"}), 200)
 
 if __name__ == '__main__':
      application.run(host='0.0.0.0',port=8080)
