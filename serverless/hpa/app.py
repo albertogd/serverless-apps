@@ -12,9 +12,9 @@ application = Flask(__name__)
 def healthz():
     return make_response(jsonify({"health": "ok"}), 200)
 
-@application.route('/memory/<int:size>/<int:time>')
-def memory(size, time):
-    seconds = time*60
+@application.route('/memory/<int:size>/<int:minutes>')
+def memory(size, minutes):
+    seconds = minutes*60
 
     try:
       dummy = ' ' * 1024 * 1024 * size
@@ -26,17 +26,17 @@ def memory(size, time):
     return make_response("", 200)
 
 def f(x):
-    timeout = time.time() + 60*float(set_time)  # X minutes from now
+    timeout = time.time() + 60*float(cpu_minutes)  # X minutes from now
     while True:
         if time.time() > timeout:
             break
         x*x
 
-@application.route('/cpu/<int:time>')
-def cpu(time):
+@application.route('/cpu/<int:minutes>')
+def cpu(minutes):
 
-    global set_time
-    set_time = time
+    global cpu_minutes
+    cpu_minutes = minutes
     processes = cpu_count()
     pool = Pool(processes)
     pool.map(f, range(processes))
