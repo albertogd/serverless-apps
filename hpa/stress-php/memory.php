@@ -16,7 +16,7 @@ flush();
 
 print "Allocated $size MB<br />";
 //$myArray = array_fill(0, $size * 1000 * 32 , pack('C', 1));
-$dummy = ' ' * 1024 * 1024 * $size
+$dummy = ' ' * 1024 * 1024 * $size;
 
 sleep($minutes * 60);
 
