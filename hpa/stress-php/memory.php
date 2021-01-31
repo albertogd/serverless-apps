@@ -1,5 +1,6 @@
 <?php
 
+ini_set('memory_limit','512M');
 print "<h1>Memory Stress Application for testing HPA</h1>";
 
 $memory_limit = get_memory_limit();
@@ -14,7 +15,7 @@ $minutes =  intval($_REQUEST['minutes']);
 flush();
 
 print "Allocated $size MB<br />";
-$myArray = array_fill(0, $size * 1000000, "z");
+$myArray = array_fill(0, $size * 1000000, pack('C', 1));
 
 sleep($minutes * 60);
 
