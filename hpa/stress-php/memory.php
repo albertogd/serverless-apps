@@ -15,7 +15,7 @@ $minutes =  intval($_REQUEST['minutes']);
 flush();
 
 print "Allocated $size MB<br />";
-$myArray = array_fill(0, $size * 1000000, pack('C', 1));
+$myArray = array_fill(0, $size * 128 , pack('C', 1));
 
 sleep($minutes * 60);
 
