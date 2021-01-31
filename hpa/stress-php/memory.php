@@ -15,10 +15,11 @@ $minutes =  intval($_REQUEST['minutes']);
 flush();
 
 print "Allocated $size MB<br />";
-//$myArray = array_fill(0, $size * 1000 * 32 , pack('C', 1));
-$dummy = ' ' * 1024 * 1024 * $size;
+$myArray = array_fill(0, $size * 1000 * 32 , pack('C', 1));
 
 sleep($minutes * 60);
+
+$myArray = null;
 
 function get_memory_limit()
 {
