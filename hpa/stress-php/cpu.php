@@ -1,5 +1,6 @@
 <?php
-$seconds = $_REQUEST['minutes'] * 60;
+$minutes = (int)$_REQUEST['minutes'];
+$seconds = $minutes * 60;
 ini_set('max_execution_time', $seconds+60);
 print "<h1>CPU Stress Application for testing HPA</h1>";
 print "Starting to stress CPU during $minutes minutes...";
