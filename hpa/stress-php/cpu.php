@@ -8,10 +8,13 @@ $exec_cores = trim(shell_exec("grep -P '^processor' /proc/cpuinfo|wc -l"));
 $before_load = sys_getloadavg();
 $before_cpu = round($before_load[0]/($exec_cores + 1)*100, 0) . '%';
 
-// We try to print output in real time
+// Flush output in real time
+ob_implicit_flush(true);
+ob_end_flush();
 print "<h1>CPU Stress Application for testing HPA</h1>";
 print "CPU before stressing CPU: {$before_cpu }<br /><br />";
 print "Starting to stress CPU during {$minutes} minutes...<br /><br />";
+print str_pad('',1)."\n";
 
 // Infinite loop until timeout
 for ($i = 7777777; $current_time <= $timeout; $i++) {
