@@ -5,7 +5,8 @@
 rc=$?
 
 if [ $rc -eq 0 ]; then
-	echo "TimeOut 300" >> /opt/app-root/etc/00-documentroot.conf
+	echo "TimeOut 300" >> /opt/app-root/etc/conf.d/00-documentroot.conf
+	echo "Customizing Apache Timeout to 300s"
 else
 	echo "Error: assemble failed!"
 fi
