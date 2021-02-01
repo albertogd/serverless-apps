@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+/usr/libexec/s2i/assemble
+
+rc=$?
+
+if [ $rc -eq 0 ]; then
+	echo "TimeOut 300" >> /opt/app-root/etc/00-documentroot.conf
+else
+	echo "Error: assemble failed!"
+fi
+
+exit $rc
