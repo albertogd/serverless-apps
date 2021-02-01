@@ -28,5 +28,7 @@ $after_cpu = round($after_load[0]/($exec_cores + 1)*100, 0) . '%';
 
 print "CPU before stressing CPU: {$after_cpu }<br /><br />";
 print "Finihsed CPU Test Load in {$minutes} minutes.";
+print str_pad('',1)."\n";
+return;
 
 ?>
