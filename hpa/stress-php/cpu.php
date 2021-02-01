@@ -5,7 +5,7 @@ $timeout = time() + $seconds;
 
 // Increase Max Execution Time as default is 30 seconds
 ini_set('max_execution_time', $seconds+60);
-set_time_limit=$seconds+60;
+set_time_limit($seconds+60);
 
 // We try to print output in real time
 ob_implicit_flush();
