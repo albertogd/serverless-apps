@@ -7,13 +7,12 @@
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "ejs": "^2.4.1",
-    "express": "^4.13.4"
+    "express": "^4.17.1"
   },
   "engine": {
     "node": "*",
     "npm": "*"
   },
-  "type":"module",
   "scripts": {
     "start": "node server.js"
   },
