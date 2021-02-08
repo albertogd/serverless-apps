@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.hello</groupId>
-	<artifactId>hello</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>java-app</artifactId>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>hello</name>
-	<description>Hello World project for Spring Boot with Unit Test</description>
+	<name>Java App</name>
+	<description>A Java Spring Boot application to use with Knative and compare with Quarkus</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

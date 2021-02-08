@@ -11,7 +11,7 @@ import java.util.Map;
 @RestController
 public class HelloController {
 
-    String greeting = "Hello World!";
+    String greeting = "<h1>Java Spring Boot Application!</h1>Welcome to your basic Java Sprint Boot application!";
 
     @RequestMapping("/")
     public String index() {
